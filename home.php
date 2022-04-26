@@ -1,13 +1,18 @@
 <?php
-  include_once $base.'./css/all-style.php';
+  include_once 'css/all-style.php';
   session_start();
+  $host = 'localhost';
+  $dbname = 'cetax';
+  $username = 'root';
+  $password = '';
+  $pdo = new PDO("mysql: host=$host;dbname=$dbname",$username,$password);
+  $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 
-  $k = new PDO("mysql:host=localhost;dbname=cetax","root","");
 
-  $sql = "SELECT * FORM table_product";
-
-  $result = $k->prepare($sql);
+  $result = $pdo->prepare(" SELECT * FROM table_product ");
   $result->execute();
+  $final = $result->fetchAll();
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +23,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Link -->
-  <link rel="stylesheet" href="/css/index.css">
+  <!-- <link rel="stylesheet" href="/css/index.css"> -->
   <script src="js/index.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -131,15 +136,15 @@
     <!-- Product -->
     
     <div class="product">
-      <?php foreach($result as $key=>$product) :?>
+      <?php foreach($final as $key=>$product) :?>
       <div class="card">
         <div class="img-box">
-            <img src="<?php stripslashes($product->product_photo)?>" alt="">
+            <img src="<?php echo stripslashes($product->product_photo) ?>" alt="">
         </div>
 
         <div class="price-box">
-            <h3><?php stripslashes($product->product_name)?></h3>
-            <h2 class="price"><?php stripslashes($product->price)?></h2>
+            <h3><?php echo stripslashes($product->product_name) ?></h3>
+            <h2 class="price">$<?php echo stripslashes($product->price) ?></h2>
             <a href="" class="buy">Buy Now</a>
         </div>
       </div>
