@@ -1,5 +1,20 @@
 <?php
-  include_once $base.'./css/all-style.php';
+  include_once 'css/all-style.php';
+  $host = 'localhost';
+  $dbname = 'cetax';
+  $username = 'root';
+  $password = '';
+  $pdo = new PDO("mysql: host=$host;dbname=$dbname",$username,$password);
+  $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+
+  $sql = "SELECT * FROM table_portfolio WHERE id_portfolioCategory = ?";
+  $result = $pdo->prepare($sql);
+  $result->execute("1");
+  $magazines = $result->fetchAll();
+  $result->execute("2");
+  $shirts = $result->fetchAll();
+  $result->execute("3");
+  $autos = $result->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -27,29 +42,38 @@
   
         <div class="kanan">
           <ul class="navbar">
-              <li><a href="home.html">Home</a></li>
-              <li><a href="product.html">Product</a></li>
-              <li><a href="about-us.html">About Us</a></li>
-              <li><a href="contact-us.html">Contact Us</a></li>
+              <li><a href="home.php">Home</a></li>
+              <li><a href="product.php">Product</a></li>
+              <li><a href="about-us.php">About Us</a></li>
+              <li><a href="contact-us.php">Contact Us</a></li>
           </ul>
         </div>
-  
-        <div class="login">
-          <a id="login-btn" href="login.html">Log In</a>
-          <a id="sign-btn" href="signup.html">Sign Up</a>
-        </div>
+        <?php
+          if( $_SESSION['role'] != null){
+            //nanti masukin yg profile sama log out button disini
+          }
+          else{
+        ?>
+          <div class="login">
+            <a id="login-btn" href="login.php">Log In</a>
+            <a id="sign-btn" href="signup.php">Sign Up</a>
+          </div>
+        <?   
+          }
+        ?>
     </nav>
 
     <!-- Magazine -->
     <h1 id="magazine-title">Magazine Company</h1>
     <div class="magazine">
+      <?php foreach($magazines as $key=>$magazine) :?>
         <div class="magazine-box">
             <div class="magazine-img">
-                <img src="images/vogue1.jpeg" alt="">
+                <img src="<?php echo stripslashes($magazine->portfolio_photo) ?>"alt="">
             </div>
         </div>
 
-        <div class="magazine-box">
+        <!-- <div class="magazine-box">
             <div class="magazine-img">
                 <img src="images/vogue2.jpg" alt="">
             </div>
@@ -59,23 +83,25 @@
             <div class="magazine-img">
                 <img src="images/vogue3.jpg" alt="">
             </div>
-        </div>
+        </div> -->
+      <?php endforeach ?>
     </div>
 
     <div id="magazine-btn">
-        <a href="portfolio-category.html">See More</a>
+        <a href="portfolio-category.php?category=<?php echo stripslashes($magazines->id_portfolioCategory ) ?>">See More</a>
     </div>
 
     <!-- Clothing Company -->
     <h1 id="magazine-title">Clothing Company</h1>
     <div class="magazine">
+      <?php foreach($shirts as $key=>$shirt) :?>
         <div class="magazine-box">
             <div class="magazine-img">
-                <img src="images/baju1.png" alt="">
-            </div>
+                <img src="<?php echo stripslashes($shirt->portfolio_photo) ?>" alt="">
+            </div> 
         </div>
 
-        <div class="magazine-box">
+        <!-- <div class="magazine-box">
             <div class="magazine-img">
                 <img src="images/baju2.png" alt="">
             </div>
@@ -85,23 +111,25 @@
             <div class="magazine-img">
                 <img src="images/baju3.png" alt="">
             </div>
-        </div>
+        </div> -->
+      <?php endforeach ?>
     </div>
 
     <div id="magazine-btn">
-        <a href="portfolio-category.html">See More</a>
+        <a href="portfolio-category.php?category=<?php echo stripslashes($shirts->id_portfolioCategory ) ?>">See More</a>
     </div>
 
     <!-- Automobile Company -->
     <h1 id="magazine-title">Automobile Company</h1>
     <div class="magazine">
+      <?php foreach($autos as $key=>$auto) :?>
         <div class="magazine-box">
             <div class="magazine-img">
-                <img src="images/compm1.png" alt="">
+                <img src="<?php echo stripslashes($auto->portfolio_photo) ?>" alt="">
             </div>
         </div>
 
-        <div class="magazine-box">
+        <!-- <div class="magazine-box">
             <div class="magazine-img">
                 <img src="images/compm2.png" alt="">
             </div>
@@ -111,11 +139,12 @@
             <div class="magazine-img">
                 <img src="images/compm3.png" alt="">
             </div>
-        </div>
+        </div> -->
+      <?php endforeach ?>
     </div>
 
     <div id="magazine-btn">
-        <a href="portfolio-category.html">See More</a>
+        <a href="portfolio-category.php?category=<?php echo stripslashes($autos->id_portfolioCategory) ?>">See More</a>
     </div>
 
 <!-- Footer -->

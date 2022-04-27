@@ -1,5 +1,5 @@
 <?php
-  include_once $base.'./css/all-style.php';
+  include_once 'css/all-style.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,11 +34,11 @@
               <li><a href="contact-us.html">Contact Us</a></li>
           </ul>
         </div>
-  
+<!--   
         <div class="login">
           <a id="login-btn" href="login.html">Log In</a>
           <a id="sign-btn" href="signup.html">Sign Up</a>
-        </div>
+        </div> -->
     </nav>
   
     <!-- Welcome -->
@@ -54,15 +54,20 @@
             <div class="form-text">
 
                 <h1>Sign up</h1>
-                    <form method="post">
+                    <form action="php/signup-process.php" method="post">
                         <div class="txt_field">
-                            <input type="text" required>
+                            <input type="text" name="email" required>
                             <span></span>
                             <label>Email</label>
                         </div>
+                        <div class="txt_field">
+                            <input type="text" name="user" required>
+                            <span></span>
+                            <label>Username</label>
+                        </div>
 
                         <div class="txt_field">
-                            <input type="password" required>
+                            <input type="password" name="pw" required>
                             <span></span>
                             <label>Password</label>
                         </div>
@@ -80,7 +85,7 @@
                         <input type="submit" value="Sign Up">
 
                         <div class="signUp-link">
-                            You're a member? <a href="login.html">Log in</a>
+                            You're a member? <a href="login.php">Log in</a>
                         </div>
                     </form>
 

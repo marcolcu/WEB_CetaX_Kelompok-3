@@ -11,7 +11,7 @@ $password = '';
 $pdo = new PDO("mysql: host=$host;dbname=$dbname",$username,$password);
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 
-$sql = "SELECT * FROM users WHERE username = ?";
+$sql = "SELECT * FROM table_customer WHERE username = ?";
 
 $result = $pdo->prepare($sql);
 $result->execute([$username]);
@@ -22,7 +22,13 @@ if($row = $result->fetch()) {
         $_SESSION['role'] = $row['role'];
         $_SESSION['user_id'] = $row['id'];
         // Jangan lupa ganti
-        header('Location: home.php');
+        if($_SESSION['role'] == "user"){
+            header('Location: home.php');
+        }
+        else if($_SESSION['role'] == "admin"){
+            header();//direct ke halaman admin
+        }
+        
     } else {
         header('Location: login.php');
     }

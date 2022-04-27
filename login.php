@@ -56,11 +56,11 @@
             <div class="form-text">
 
                 <h1>Login</h1>
-                <form action="login-process.php" method="post">
+                <form action="php/login-process.php" method="post">
                     <div class="txt_field">
-                        <input type="text" placeholder="Username / Email" name="user" required>
+                        <input type="text" placeholder="Username" name="user" required>
                         <span></span>
-                        <label>Email</label>
+                        <label>Username</label>
                     </div>
 
                     <div class="txt_field">

@@ -49,10 +49,19 @@
       </ul>
     </div>
 
-    <div class="login">
-      <a id="login-btn" href="login.html">Log In</a>
-      <a id="sign-btn" href="signup.html">Sign Up</a>
-    </div>
+    <?php
+      if( $_SESSION['role'] != null){
+        //nanti masukin yg profile sama log out button disini
+      }
+      else{
+    ?>
+      <div class="login">
+        <a id="login-btn" href="login.php">Log In</a>
+        <a id="sign-btn" href="signup.php">Sign Up</a>
+      </div>
+    <?   
+      }
+    ?>
   </nav>
 
   <!-- Content -->

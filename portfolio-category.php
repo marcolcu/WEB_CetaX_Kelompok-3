@@ -1,5 +1,18 @@
 <?php
-  include_once $base.'./css/all-style.php';
+  include_once 'css/all-style.php';
+  $category  = $_GET['category'];
+  $host = 'localhost';
+  $dbname = 'cetax';
+  $username = 'root';
+  $password = '';
+  $pdo = new PDO("mysql: host=$host;dbname=$dbname",$username,$password);
+  $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+
+  $sql = "SELECT * FROM table_portfolio WHERE id_portfolioCategory = $category";
+  $result = $pdo->prepare($sql);
+  $result->execute();
+  $final = $result->fetchAll();
+
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +40,7 @@
   
         <div class="kanan">
           <ul class="navbar">
-              <li><a href="home.html">Home</a></li>
+              <li><a href="home.php">Home</a></li>
               <li><a href="product.html">Product</a></li>
               <li><a href="about-us.html">About Us</a></li>
               <li><a href="contact-us.html">Contact Us</a></li>
@@ -46,14 +59,15 @@
     <div class="container">
         <!-- First Row -->
         <div class="portfolio-card">
+          <?php foreach($final as $key=>$product) :?>
             <div class="portfolio-box">
-                <a href="images/comp1.png">
-                    <img src="images/comp1.png" alt="">
+                <a href="<?php echo stripslashes($product->portfolio_photo) ?>">
+                    <img src="<?php echo stripslashes($product->portfolio_photo) ?>" alt="">
                 </a>
-                <h3>Bathing Ape</h3>
+                <h3><?php echo stripslashes($product->portfolio_name) ?></h3>
             </div>
 
-            <div class="portfolio-box">
+            <!-- <div class="portfolio-box">
                 <a href="images/comp2.png">
                     <img src="images/comp2.png" alt="">
                 </a>
@@ -64,8 +78,9 @@
                 <a href="images/comp3.png">
                     <img src="images/comp3.png" alt="">
                 </a>
-                <h3>Pull and Bear</h3>
-            </div>
+                <h3>Pull and Bear</h3> 
+            </div>-->
+          <?php endforeach ?>
         </div>
 
         <!-- Second Row -->
