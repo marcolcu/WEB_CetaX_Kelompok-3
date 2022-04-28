@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Links -->
+    <link rel="stylesheet" href="css/admin-page.css">
+    <script src="https://kit.fontawesome.com/a623eebd84.js" crossorigin="anonymous"></script>
+
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    
+    <!-- Navigation Menu -->
+    <section id="menu">
+        <div class="logo">
+            <img src="images/cetax 1.png" alt="">
+            <h2>CetaX</h2>
+        </div>
+
+        <div class="items">
+            <li><i class="fa-solid fa-chart-pie"></i><a href="#">Dashboard</a></li>
+            <li><i class="fa-solid fa-right-from-bracket"></i><a href="#">Log out</a></li>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div class="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Title -->
+        <h3 class="i-name">
+            Dashboard
+        </h3>
+
+        <!-- Items -->
+        <div class="board">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Title</td>
+                        <td>Status</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="people">
+                            <div class="people-de">
+                                <h5>Customer Name</h5>
+                                <p>customer@example.com</p>
+                            </div>
+                        </td>
+
+                        <td class="people-des">
+                            <h5>T-Shirt</h5>
+                            <p>5 Items</p>
+                        </td>
+
+                        <td class="active"><p>Active</p></td>
+
+                        <td class="edit">
+                            <button id="open">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+    <div class="edit-container" id="open-edit">
+        <div class="content">
+            <button id="close">X</button>
+        </div>
+
+        <div class="content">
+            <div class="cust-name">
+                <h5>Customer Name</h5>
+                <p>customer@example.com</p>
+            </div>
+
+            <div class="cust-phone">
+                <p>08XX-XXXX-XXXX</p>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="cust-address">
+                <h5>Province</h5>
+                <p>Full Address</p>
+            </div>
+
+            <div class="cust-item">
+                <h5>T-Shirt</h5>
+                <p>5 Item</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const open = document.getElementById('open');
+        const edit_container = document.getElementById('open-edit');
+        const close = document.getElementById('close');
+
+        open.addEventListener('click', () => {
+            edit_container.classList.add('show');
+        });
+
+        close.addEventListener('click', () => {
+            edit_container.classList.remove('show');
+        });
+    </script>
+
+</body>
+</html>
