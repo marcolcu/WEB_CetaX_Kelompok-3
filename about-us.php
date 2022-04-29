@@ -28,6 +28,8 @@
           <h1>Ceta</h1><h1 id="color">X</h1>
         </div>
   
+        <div class="tes"></div>
+
         <div class="kanan">
           <ul class="navbar">
               <li><a href="home.php">Home</a></li>
