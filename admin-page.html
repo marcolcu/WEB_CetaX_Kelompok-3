@@ -57,7 +57,6 @@
                     <tr>
                         <td class="people">
                             <div class="people-de">
-                                <input type="text" placeholder="T-shirt">
                                 <h5>Customer Name</h5>
                                 <p>customer@example.com</p>
                             </div>
@@ -82,30 +81,40 @@
 
     <div class="edit-container" id="open-edit">
         <div class="content">
+            <h3>Edit Product</h3>
             <button id="close">X</button>
         </div>
 
-        <div class="content">
-            <div class="cust-name">
-                <h5>Customer Name</h5>
-                <p>customer@example.com</p>
-            </div>
+        <div class="form-text">
+                <form action="php/signup-process.php" method="post">
+                    <div class="txt_field">
+                        <input type="text" name="name" required>
+                        <span></span>
+                        <label>Product Name</label>
+                    </div>
+                    <div class="txt_field">
+                        <input type="text" name="price" required>
+                        <span></span>
+                        <label>Price</label>
+                    </div>
 
-            <div class="cust-phone">
-                <p>08XX-XXXX-XXXX</p>
-            </div>
-        </div>
+                    <div class="txt_field">
+                        <input type="text" name="stock" required>
+                        <span></span>
+                        <label>Stock</label>
+                    </div>
 
-        <div class="content">
-            <div class="cust-address">
-                <h5>Province</h5>
-                <p>Full Address</p>
-            </div>
+                    <div class="txt_field" id="file">
+                        <div class="file-upload">
+                            <input type="file">
+                        </div>
+                    </div>
 
-            <div class="cust-item">
-                <h5>T-Shirt</h5>
-                <p>5 Item</p>
-            </div>
+                    <div class="btn-choose">
+                        <input type="submit" value="Update">
+                        <input type="submit" id="remove" value="Delete">
+                    </div>
+                </form>
         </div>
     </div>
 
